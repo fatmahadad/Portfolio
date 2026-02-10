@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pro fatma</title>
+    <meta name="description"
+        content="A modern dark portfolio template inspired by the Northern Lights with comprehensive sections and smooth animations">
+    <meta property="og:title" content="Aurora Portfolio Template">
+    <meta property="og:description" content="A Northern Lights inspired portfolio template with dark mode aesthetic">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'aurora-green': '#00ffaa',
+                        'aurora-blue': '#00aaff',
+                        'aurora-purple': '#aa00ff',
+                        'aurora-pink': '#ff00aa',
+                        'dark-bg': '#0a0e1a',
+                        'dark-card': '#1a1f2e',
+                        'dark-border': '#2a2f3e'
+                    },
+                    animation: {
+                        'aurora': 'aurora 15s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        aurora: {
+                            '0%, 100%': {
+                                backgroundPosition: '0% 50%',
+                                backgroundSize: '200% 200%'
+                            },
+                            '50%': {
+                                backgroundPosition: '100% 50%',
+                                backgroundSize: '200% 200%'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        glow: {
+                            '0%, 100%': {
+                                boxShadow: '0 0 5px rgba(0, 255, 170, 0.5), 0 0 20px rgba(0, 255, 170, 0.3)'
+                            },
+                            '50%': {
+                                boxShadow: '0 0 20px rgba(0, 170, 255, 0.8), 0 0 40px rgba(0, 170, 255, 0.4)'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Aurora gradient background */
+        .aurora-bg {
+            background: linear-gradient(-45deg, #0a0e1a, #1a0033, #002244, #001a33);
+            background-size: 400% 400%;
+            animation: aurora 15s ease infinite;
+        }
+
+        /* Aurora light effect overlay */
+        .aurora-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background:
+                radial-gradient(ellipse at top left, rgba(0, 255, 170, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at top right, rgba(0, 170, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at bottom left, rgba(170, 0, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at bottom right, rgba(255, 0, 170, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #00ffaa, #00aaff);
+            border-radius: 5px;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00ffaa 0%, #00aaff 50%, #aa00ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Card hover effect */
+        .card-hover {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .card-hover:hover {
+            border-color: #00ffaa;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 170, 0.2);
+        }
+
+        /* Progress bar animation */
+        @keyframes progressAnimation {
+            0% {
+                width: 0%;
+            }
+        }
+
+        .progress-bar {
+            animation: progressAnimation 2s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-dark-bg text-gray-200 aurora-bg">
+    <!-- Aurora overlay effect -->
+    <div class="aurora-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-dark-bg/90 backdrop-blur-md border-b border-dark-border z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo / Name -->
+                <div class="text-2xl font-bold gradient-text">Fatma Hadad</div>
+
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#home" class="hover:text-aurora-green transition">Home</a></li>
+                    <li><a href="#about" class="hover:text-aurora-green transition">About</a></li>
+                    <li><a href="#education" class="hover:text-aurora-green transition">Education</a></li>
+                    <li><a href="#skills" class="hover:text-aurora-green transition">Skills</a></li>
+                    <li><a href="#projects" class="hover:text-aurora-green transition">Projects</a></li>
+                    <li><a href="#achievements" class="hover:text-aurora-green transition">Achievements</a></li>
+                    <li><a href="#contact" class="hover:text-aurora-green transition">Contact</a></li>
+                </ul>
+
+                <!-- Mobile menu button -->
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#home" class="block py-2 hover:text-aurora-green">Home</a>
+                <a href="#about" class="block py-2 hover:text-aurora-green">About</a>
+                <a href="#education" class="block py-2 hover:text-aurora-green">Education</a>
+                <a href="#skills" class="block py-2 hover:text-aurora-green">Skills</a>
+                <a href="#projects" class="block py-2 hover:text-aurora-green">Projects</a>
+                <a href="#achievements" class="block py-2 hover:text-aurora-green">Achievements</a>
+                <a href="#contact" class="block py-2 hover:text-aurora-green">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative">
+        <div class="container mx-auto px-6 text-center z-10">
+            <div class="animate-slide-up">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                    Hello, I'm <span class="gradient-text">Fatma Hadad</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-400 mb-8" style=" color: white;">
+                    Aspiring Web Developer | IT Student
+                </p>
+                <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-12" style=" color: white;">
+                    I'm passionate about creating responsive and user-friendly web applications.
+                    I enjoy building projects that enhance functionality and improve the digital experience.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects"
+                        class="px-8 py-3 bg-gradient-to-r from-aurora-green to-aurora-blue rounded-full text-dark-bg font-semibold hover:shadow-lg hover:shadow-aurora-green/50 transition transform hover:scale-105">
+                        View My Projects
+                    </a>
+                    <a href="fatma_cv.pdf"
+                        class="px-8 py-3 border-2 border-aurora-green rounded-full hover:bg-aurora-green hover:text-dark-bg transition transform hover:scale-105">
+                        Download CV
+                    </a>
+                </div>
+                <div class="mt-12 flex justify-center space-x-6">
+                    <a href="https://github.com/fatmahadad" class="text-2xl hover:text-aurora-green transition"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/fatma-hadad-666354358"
+                        class="text-2xl hover:text-aurora-blue transition"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated particles -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute w-2 h-2 bg-aurora-green rounded-full animate-float" style="top: 20%; left: 10%;"></div>
+            <div class="absolute w-2 h-2 bg-aurora-blue rounded-full animate-float"
+                style="top: 60%; left: 80%; animation-delay: 1s;"></div>
+            <div class="absolute w-2 h-2 bg-aurora-purple rounded-full animate-float"
+                style="top: 40%; left: 60%; animation-delay: 2s;"></div>
+            <div class="absolute w-2 h-2 bg-aurora-pink rounded-full animate-float"
+                style="top: 80%; left: 30%; animation-delay: 3s;"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">About Me</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                 <p class="text-gray-400 leading-relaxed" style=" color: white;">
+    I’m Fatma Hadad, an Information Technology student and web developer. I started my web development journey <strong>2 years ago</strong>.
+</p>
+<p class="text-gray-400 leading-relaxed" style=" color: white;">
+    I have completed <strong>6+ projects</strong>, including e-commerce websites, university portals, and a café website (CaffiNet), using HTML, CSS, JavaScript, PHP, and MySQL, with beginner-level experience in Flutter and Dart. I focus on writing clean code and building functional, user-friendly, responsive web applications.
+</p>
+
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
+                            <div class="text-3xl font-bold text-aurora-green">3rd</div>
+                            <div class="text-sm text-gray-400">Year Student</div>
+                        </div>
+                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
+                            <div class="text-3xl font-bold text-aurora-blue">2027</div>
+                            <div class="text-sm text-gray-400">Expected Graduation</div>
+                        </div>
+                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
+                            <div class="text-3xl font-bold text-aurora-purple">4+</div>
+                            <div class="text-sm text-gray-400">Projects Completed</div>
+                        </div>
+                        <div class="bg-dark-card p-4 rounded-lg border border-dark-border">
+                            <div class="text-3xl font-bold text-aurora-pink">Freelance</div>
+                            <div class="text-sm text-gray-400">Work Experience</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div
+                        class="w-80 h-80 mx-auto rounded-full bg-gradient-to-br from-aurora-green via-aurora-blue to-aurora-purple p-1">
+                        <div class="w-full h-full rounded-full bg-dark-bg flex items-center justify-center">
+                            <span class="text-6xl">👩‍💻</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Education</h2>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="relative pl-8 border-l-2 border-aurora-green">
+                    <div class="absolute -left-2 top-0 w-4 h-4 bg-aurora-green rounded-full"></div>
+                    <div class="bg-dark-card p-6 rounded-lg">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-aurora-green">Bachelor’s Degree in Information
+                                Technology</h3>
+                            <span class="text-sm text-gray-400">2023 - 2027</span>
+                        </div>
+                        <p class="text-gray-400">New Cairo University of Technology</p>
+                        <p class="text-gray-400">3rd Year Student – Expected Graduation: 2027</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Technical Skills</h2>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Frontend Skills -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-aurora-green">Frontend</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>HTML / CSS / JavaScript</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-dark-card rounded-full h-2">
+                                <div class="bg-gradient-to-r from-aurora-green to-aurora-blue h-2 rounded-full"
+                                    style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend Skills -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-aurora-blue">Backend</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>PHP</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-dark-card rounded-full h-2">
+                                <div class="bg-gradient-to-r from-aurora-blue to-aurora-purple h-2 rounded-full"
+                                    style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>MySQL</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full bg-dark-card rounded-full h-2">
+                                <div class="bg-gradient-to-r from-aurora-purple to-aurora-pink h-2 rounded-full"
+                                    style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile / Tools -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-aurora-purple">Mobile & Tools</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-dark-card p-4 rounded-lg text-center">
+                            <i class="fab fa-git text-2xl mb-2 text-aurora-green"></i>
+                            <p>Git</p>
+                        </div>
+                        <div class="bg-dark-card p-4 rounded-lg text-center">
+                            <i class="fab fa-github text-2xl mb-2 text-aurora-blue"></i>
+                            <p>GitHub</p>
+                        </div>
+                        <div class="bg-dark-card p-4 rounded-lg text-center">
+                            <i class="fas fa-mobile-alt text-2xl mb-2 text-aurora-purple"></i>
+                            <p>Flutter (Beginner)</p>
+                        </div>
+                        <div class="bg-dark-card p-4 rounded-lg text-center">
+                            <i class="fas fa-code text-2xl mb-2 text-aurora-pink"></i>
+                            <p>Dart (Beginner)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Projects</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-dark-card rounded-lg overflow-hidden card-hover">
+                    <div
+                        class="h-48 bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
+                        <i class="fas fa-university text-6xl text-dark-bg"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">NCTU Portal</h3>
+                        <p class="text-gray-400 mb-4">Full-stack university portal with doctor login, student
+                            management, and assignment upload.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://fatmahadad.github.io/nctu/"
+                                class="text-aurora-green hover:text-aurora-blue transition"><i
+                                    class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-dark-card rounded-lg overflow-hidden card-hover">
+                    <div
+                        class="h-48 bg-gradient-to-br from-aurora-blue to-aurora-purple flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-6xl text-dark-bg"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Shoe Store Website</h3>
+                        <p class="text-gray-400 mb-4">Full-stack e-commerce website with product and shopping cart
+                            functionality.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://fatmahadad.github.io/MyWebsite/"
+                                class="text-aurora-green hover:text-aurora-blue transition"><i
+                                    class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-dark-card rounded-lg overflow-hidden card-hover">
+                    <div
+                        class="h-48 bg-gradient-to-br from-aurora-purple to-aurora-pink flex items-center justify-center">
+                        <i class="fas fa-building text-6xl text-dark-bg"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Seengem Website</h3>
+                        <p class="text-gray-400 mb-4">Responsive business website with clean UI, structured layout, and
+                            optimized user experience.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://fatmahadad.github.io/seengem/"
+                                class="text-aurora-green hover:text-aurora-blue transition"><i
+                                    class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 5 -->
+                <div class="bg-dark-card rounded-lg overflow-hidden card-hover">
+                    <div
+                        class="h-48 bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
+                        <i class="fas fa-coffee text-6xl text-dark-bg"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">CaffiNet Website</h3>
+                        <p class="text-gray-400 mb-4">Responsive café website featuring menu, interactive UI, and Wi-Fi
+                            info.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://fatmahadad.github.io/CaffiNet/"
+                                class="text-aurora-green hover:text-aurora-blue transition">
+                                <i class="fas fa-external-link-alt"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="bg-dark-card rounded-lg overflow-hidden card-hover">
+                    <div
+                        class="h-48 bg-gradient-to-br from-aurora-purple to-aurora-pink flex items-center justify-center">
+                        <i class="fas fa-tshirt text-6xl text-dark-bg"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Online Clothing Store</h3>
+                        <p class="text-gray-400 mb-4">Full-stack e-commerce website for clothes with shopping cart
+                            functionality.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://fatmahadad.github.io/MySecondWebsite/"
+                                class="text-aurora-green hover:text-aurora-blue transition">
+                                <i class="fas fa-external-link-alt"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="bg-dark-card rounded-lg overflow-hidden card-hover">
+                    <div
+                        class="h-48 bg-gradient-to-br from-aurora-green to-aurora-purple flex items-center justify-center">
+                        <i class="fas fa-utensils text-6xl text-dark-bg"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Restoran Website</h3>
+                        <p class="text-gray-400 mb-4">Modern restaurant website featuring menu sections, responsive
+                            design, and interactive UI elements.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://fatmahadad.github.io/Restoran/"
+                                class="text-aurora-green hover:text-aurora-blue transition"><i
+                                    class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Achievements Section -->
+<section id="achievements" class="py-20 bg-dark-card/30">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Achievements & Courses</h2>
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                <h3 class="text-xl font-semibold text-aurora-green">Frontend Web Development (Udemy)</h3>
+                <p class="text-gray-400 mt-2">Completed a comprehensive course on HTML, CSS, and JavaScript.</p>
+            </div>
+            <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                <h3 class="text-xl font-semibold text-aurora-blue">Flutter Development (Udemy)</h3>
+                <p class="text-gray-400 mt-2">Gained beginner-level experience building mobile apps with Flutter & Dart.</p>
+            </div>
+            <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                <h3 class="text-xl font-semibold text-aurora-purple">Web Development & Flutter (ITI)</h3>
+                <p class="text-gray-400 mt-2">Hands-on training in full-stack web development and Flutter mobile apps.</p>
+            </div>
+            <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                <h3 class="text-xl font-semibold text-aurora-pink">Frontend & Flutter (Sprint / Microsoft)</h3>
+                <p class="text-gray-400 mt-2">Practical experience in frontend web technologies and Flutter projects.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Contact Me</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
+                            <i class="fas fa-envelope text-dark-bg"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">Email</p>
+                            <p>fatmahadad906@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-blue to-aurora-purple flex items-center justify-center">
+                            <i class="fas fa-phone text-dark-bg"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">Phone</p>
+                            <p>01068238595</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-purple to-aurora-pink flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-dark-bg"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">Location</p>
+                            <p>New Cairo, Egypt</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-green to-aurora-blue flex items-center justify-center">
+                            <i class="fab fa-linkedin text-dark-bg"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">LinkedIn</p>
+                            <a href="https://www.linkedin.com/in/fatma-hadad-666354358"
+                                class="text-aurora-green hover:text-aurora-blue">Profile</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-gradient-to-br from-aurora-blue to-aurora-purple flex items-center justify-center">
+                            <i class="fab fa-github text-dark-bg"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">GitHub</p>
+                            <a href="https://github.com/fatmahadad"
+                                class="text-aurora-green hover:text-aurora-blue">Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="space-y-4">
+                    <input type="text" placeholder="Your Name"
+                        class="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg focus:outline-none focus:border-aurora-green">
+                    <input type="email" placeholder="Your Email"
+                        class="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg focus:outline-none focus:border-aurora-green">
+                    <textarea placeholder="Your Message" rows="4"
+                        class="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg focus:outline-none focus:border-aurora-green"></textarea>
+                    <button type="submit"
+                        class="w-full px-8 py-3 bg-gradient-to-r from-aurora-green to-aurora-blue rounded-lg text-dark-bg font-semibold hover:shadow-lg hover:shadow-aurora-green/50 transition transform hover:scale-105">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+<footer class="py-8 border-t border-dark-border">
+    <div class="container mx-auto px-6 text-center">
+        <div class="mb-4">
+            <a href="https://github.com/fatmahadad" target="_blank" class="text-2xl mx-2 hover:text-aurora-green transition">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/fatma-hadad-666354358" target="_blank" class="text-2xl mx-2 hover:text-aurora-blue transition">
+                <i class="fab fa-linkedin"></i>
+            </a>
+          
+        </div>
+        <p class="text-gray-400">
+            © 2026 Fatma Hadad. 
+            <a href="https://github.com/OSSPhilippines/freefolio" target="_blank"
+                class="text-aurora-green hover:text-aurora-blue transition">
+                
+            </a>
+        </p>
+    </div>
+</footer>
+
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animation
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
